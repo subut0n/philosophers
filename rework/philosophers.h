@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: addzikow <addzikow@42student.lyon.fr>      +#+  +:+       +#+        */
+/*   By: addzikow <addzikow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 11:04:18 by addzikow          #+#    #+#             */
-/*   Updated: 2021/11/05 11:34:55 by addzikow         ###   ########lyon.fr   */
+/*   Updated: 2021/11/08 11:33:14 by addzikow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 # include	<signal.h>
 
 # include   "../libft/libft.h"
-
 
 # define EVEN 0
 # define ODD 1

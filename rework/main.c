@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: addzikow <addzikow@42student.lyon.fr>      +#+  +:+       +#+        */
+/*   By: addzikow <addzikow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 11:23:00 by addzikow          #+#    #+#             */
-/*   Updated: 2021/11/05 12:02:47 by addzikow         ###   ########lyon.fr   */
+/*   Updated: 2021/11/08 11:32:25 by addzikow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,54 @@ int	parse_arguments(t_data *data, char **argv)
 	return (0);
 }
 
+char	*get_state(const char *str, int state)
+{
+	char	*buffer;
+
+	if (state == FORK)
+		buffer = ft_strjoin(str, "\thas taken a fork\n");
+	else if (state == EAT)
+		buffer = ft_strjoin(str, "\tis eating\n");
+	else if (state == SLEEP)
+		buffer = ft_strjoin(str, "\tis sleeping\n");
+	else if (state == THINK)
+		buffer = ft_strjoin(str, "\tis thinking\n");
+	else if (state == DIE)
+		buffer = ft_strjoin(str, "\tdied\n");
+	else
+		return (NULL);
+	return (buffer);
+}
+
+int printer(long timer, int philo, int state)
+{
+	char *timestamp;
+	char *philo_number;
+	char *tmp;
+	char *buff;
+
+	timestamp = ft_itoa(timer);
+	philo_number = ft_itoa(philo);
+	tmp = ft_strjoin(timestamp, philo_number);
+	buff = get_state(tmp, state);
+	if (buff == NULL)
+		return (1);
+	write(1, buff, ft_strlen(buff));
+	free(timestamp);
+	free(philo_number);
+	free(tmp);
+	free(buff);
+	return (0);
+}
+
+
 void init_dinner(t_data *data, long start_time)
 {
 	int	parity;
 	int	i;
+	int control;
 
+	control = 0;
 	parity = data->arg.nb_philo % 2;
 	i = 0;
 	while (i < data->arg.nb_philo)
